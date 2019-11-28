@@ -17,6 +17,7 @@ services:
     depends_on:
       - db
 
+      
   parser:
     build:
       context: ./parser
