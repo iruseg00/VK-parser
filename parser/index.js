@@ -12,7 +12,7 @@ Sequelize
   });
 
 
-setTimeout(()=>
+setInterval(()=>
 {
     Cybersport();
-}, 30000);
+}, 900000);
