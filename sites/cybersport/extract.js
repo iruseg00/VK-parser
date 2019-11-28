@@ -25,7 +25,7 @@ function extract(link)
                     {
                         object.text.push($(elem).text());
                     });
-
+                    
                     // console.log(object.link)
                     // console.log("\x1b[44m%s\x1b[0m" , object.text)
                 });
