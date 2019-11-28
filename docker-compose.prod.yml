@@ -22,7 +22,7 @@ services:
       context: ./parser
       dockerfile: prod.Dockerfile
     restart: always
-    ports:
-      - 5001:6000
+    # ports:
+    #   - 5001:6000
     depends_on:
       - db
