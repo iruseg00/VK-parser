@@ -1,0 +1,18 @@
+{
+    "development": {
+      "username": "postgres",
+      "password": "trytofindme",
+      "database": "template1",
+      "host": "0.0.0.0",
+      "dialect": "postgres",
+      "operatorsAliases": false
+    },
+    "production": {
+      "username": "root",
+      "password": "trytofindme",
+      "database": "db",
+      "host": "78.47.43.112",
+      "dialect": "postgres",
+      "operatorsAliases": false
+    }
+  }
