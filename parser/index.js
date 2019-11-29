@@ -2,6 +2,8 @@ const Cybersport = require('./sites/cybersport/Cybersport');
 const Sequelize = require('./db/config/connect');
 const Posts = require('./db/models/Posts');
 
+var time = 60000;
+
 Sequelize
   .authenticate()
   .then(() => {
@@ -15,4 +17,5 @@ Sequelize
 setInterval(()=>
 {
     Cybersport();
-}, 900000);
+    time = 900000;
+}, time);
