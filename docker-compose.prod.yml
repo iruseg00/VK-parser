@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: trytofindme
     volumes:
       - ./db/db_prod:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 
   adminer:
     image: adminer
@@ -23,7 +25,5 @@ services:
       context: ./parser
       dockerfile: prod.Dockerfile
     restart: always
-    # ports:
-    #   - 5001:6000
     depends_on:
       - db

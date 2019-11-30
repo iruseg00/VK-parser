@@ -1,10 +1,14 @@
 const Sequelize = require('sequelize');
+
+var env = process.env.NODE_ENV || "development";
+var config = require("./config.json")[env];
+
 const sequelize = new Sequelize(
-  'template1', 
-  'postgres', 
-  'trytofindme', 
+  config.database,
+  config.username,
+  config.password,
   {
-    host: '0.0.0.0',
+    host: config.host,
     dialect: 'postgres',
     pool:
     {
