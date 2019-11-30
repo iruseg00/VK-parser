@@ -1,21 +1,38 @@
+require("dotenv").config();
 const Cybersport = require('./sites/cybersport/Cybersport');
+const logger = require('./logs/log');
 const Sequelize = require('./db/config/connect');
 const Posts = require('./db/models/Posts');
 
-var time = 60000;
-
-Sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Connection has been established successfully");
-  })
-  .catch(err => {
-    console.error("Unable to connect to the database:", err);
-  });
-
-
-setInterval(()=>
+var timer = 
 {
-    Cybersport();
-    time = 900000;
-}, time);
+  "development" : 80000 ,
+  "production"  : 900000
+};
+
+try 
+{
+  var env = process.env.NODE_ENV || "development";
+  var time = timer[env];
+
+  Sequelize
+    .authenticate()
+    .then(() => 
+    {
+      logger.info("Connection has been established successfully");
+    })
+    .catch(error => 
+    {
+      logger.error("Unable to connect to the database: " + error);
+    });
+
+
+  setInterval(()=>
+  {
+      Cybersport();
+  }, time);
+} 
+catch (error) 
+{
+  logger.error('error in index.js or inside , error: ' + error);
+}

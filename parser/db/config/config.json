@@ -1,5 +1,6 @@
 {
-    "development": {
+    "development": 
+    {
       "username": "postgres",
       "password": "trytofindme",
       "database": "template1",
@@ -7,7 +8,8 @@
       "dialect": "postgres",
       "operatorsAliases": false
     },
-    "production": {
+    "production": 
+    {
       "username": "root",
       "password": "trytofindme",
       "database": "db",
@@ -15,4 +17,4 @@
       "dialect": "postgres",
       "operatorsAliases": false
     }
-  }
+}
