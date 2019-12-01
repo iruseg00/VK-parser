@@ -19,7 +19,6 @@ class PostsService {
           topic: body.topic ,
           description: body.text ,
           timeUTC: body.timeUTC ,
-          time: body.time ,
           site: body.site ,
           link: body.link ,
         }

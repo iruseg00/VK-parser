@@ -17,8 +17,6 @@ function extract(link)
                     || $("section > header.article__header > div.article__meta > div > a.tag").text();
                     object.topic = $("section > header.article__header > h1").text() 
                     ||  $("header.article__header > h1").text();
-                    object.time = $("section > header.article__header > div.article__info > div.article__author > time").text() 
-                    || $("header.article__header > div.article__info > div.article__author > a > div.author__title > time").text();
                     object.timeUTC = $("section > header.article__header > div.article__info > div.article__author > time").attr("datetime") 
                     || $("header.article__header > div.article__info > div.article__author > a > div.author__title > time").attr("datetime");
                     object.text = [];
@@ -29,9 +27,6 @@ function extract(link)
                     object.site = "cybersport.ru";
 
                     PostsService.create(object);
-
-                    //console.log(object.link)
-                    // console.log("\x1b[44m%s\x1b[0m" , object.text)
                 });
     } 
     catch (error) 

@@ -35,11 +35,6 @@ var Posts = sequelize.define(
       type: Sequelize.DATE,
       allowNull: true
     },
-    time: 
-    {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
     link: 
     {
         type: Sequelize.STRING,
