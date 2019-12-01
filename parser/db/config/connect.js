@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
   config.password,
   {
     host: config.host,
-    dialect: 'postgres',
+    dialect: "postgres",
     pool:
     {
       max: 5,
