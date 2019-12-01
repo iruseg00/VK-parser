@@ -10,7 +10,7 @@ const logger = winston.createLogger({
     format.simple()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/parser.log', level: 'info' }),
+    new winston.transports.File({ filename: 'logs/output_log/parser.log', level: 'info' }),
     // new winston.transports.File({ filename: 'logs/combined.log' })
   ]
 });
