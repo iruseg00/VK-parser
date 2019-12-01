@@ -24,7 +24,5 @@ services:
       context: ./parser
       dockerfile: prod.Dockerfile
     restart: always
-    volumes:
-      - ./logs:/usr/src/app/logs
     depends_on:
       - db
