@@ -8,8 +8,7 @@ services:
       POSTGRES_PASSWORD: trytofindme
     volumes:
       - ./db/db_prod:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+
 
   adminer:
     image: adminer
