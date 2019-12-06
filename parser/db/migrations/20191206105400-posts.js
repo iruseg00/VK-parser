@@ -14,8 +14,8 @@ module.exports =
             },
             type: 
             {
-                type: Sequelize.STRING,
-                allowNull: true
+              type: Sequelize.STRING,
+              allowNull: true
             },
             topic: 
             {
@@ -35,25 +35,33 @@ module.exports =
               },
               allowNull: false
             },
-            linkPhoto: 
+            linksPhoto: 
             {
-                type: Sequelize.STRING,
-                allowNull: true
+              type: Sequelize.TEXT,
+              get: function() 
+              {
+                return JSON.parse(this.getDataValue('linksPhoto'));
+              }, 
+              set: function(val) 
+              {
+                return this.setDataValue('linksPhoto', JSON.stringify(val));
+              },
+              allowNull: true
             },
             link: 
             {
-                type: Sequelize.STRING,
-                allowNull: false
+              type: Sequelize.STRING,
+              allowNull: false
             },
             timeUTC: 
             {
-                type: Sequelize.DATE,
-                allowNull: true
+              type: Sequelize.DATE,
+              allowNull: true
             },
             site: 
             {
-                type: Sequelize.STRING,
-                allowNull: false
+              type: Sequelize.STRING,
+              allowNull: false
             },  
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
@@ -61,6 +69,6 @@ module.exports =
     },
     down: (queryInterface, Sequelize) => 
     {
-        return queryInterface.dropTable("Posts");
+      return queryInterface.dropTable("Posts");
     }
 };
