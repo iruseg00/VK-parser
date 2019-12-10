@@ -29,7 +29,7 @@ try
 
   setInterval(()=>
   {
-      Cybersport();
+    Cybersport();
   }, time);
 } 
 catch (error) 
