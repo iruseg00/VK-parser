@@ -35,8 +35,6 @@ function extract(link)
                 });
                 object.site = "cybersport.ru";
                 
- 
-                logger.info('---->' + object.linksPhoto);
                 PostsService.create(object);
             });
     }
