@@ -4,16 +4,19 @@ const sequelize = require ('../config/connect');
 var Posts = sequelize.define(
   'Posts',
   {
-    id: {
+    id: 
+    {
       type: Sequelize.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4
     },
-    type: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-    topic: {
+    type: 
+    {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    topic: 
+    {
       type: Sequelize.TEXT,
       allowNull: true
     },
@@ -30,23 +33,35 @@ var Posts = sequelize.define(
       },
       allowNull: false
     },
+    linksPhoto: 
+    {
+      type: Sequelize.TEXT,
+      get: function() 
+      {
+        return JSON.parse(this.getDataValue('linksPhoto'));
+      }, 
+      set: function(val) 
+      {
+        return this.setDataValue('linksPhoto', JSON.stringify(val));
+      },
+      allowNull: true
+    },
     timeUTC: 
     {
       type: Sequelize.DATE,
-      allowNull: true
+      allowNull: false
     },
     link: 
     {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     site: 
     {
-        type: Sequelize.STRING,
-        allowNull: true
+      type: Sequelize.STRING,
+      allowNull: false
     },  
-  },
-  );
+  });
   
   Posts.sync({force: false})
 

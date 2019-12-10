@@ -21,6 +21,7 @@ class PostsService {
           timeUTC: body.timeUTC ,
           site: body.site ,
           link: body.link ,
+          linksPhoto: body.linksPhoto ,
         }
       });
     }
