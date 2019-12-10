@@ -6,7 +6,7 @@ const Posts = require('./db/models/Posts');
 
 var timer = 
 {
-  "development" : 30000 ,
+  "development" : 10000 ,
   "production"  : 900000
 };
 
@@ -27,7 +27,7 @@ try
     });
 
 
-  setInterval(()=>
+  setTimeout(()=>
   {
       Cybersport();
   }, time);
