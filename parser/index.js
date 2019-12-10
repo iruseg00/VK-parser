@@ -27,7 +27,7 @@ try
     });
 
 
-  setinterval(()=>
+  setInterval(()=>
   {
       Cybersport();
   }, time);
