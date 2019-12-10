@@ -49,7 +49,7 @@ var Posts = sequelize.define(
     timeUTC: 
     {
       type: Sequelize.DATE,
-      allowNull: true
+      allowNull: false
     },
     link: 
     {
@@ -59,7 +59,7 @@ var Posts = sequelize.define(
     site: 
     {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: false
     },  
   });
   
