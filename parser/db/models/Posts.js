@@ -34,18 +34,18 @@ var Posts = sequelize.define(
       allowNull: false
     },
     linksPhoto: 
-    {
-      type: Sequelize.TEXT,
-      get: function() 
       {
-        return JSON.parse(this.getDataValue('linksPhoto'));
-      }, 
-      set: function(val) 
-      {
-        return this.setDataValue('linksPhoto', JSON.stringify(val));
+        type: Sequelize.TEXT,
+        get: function() 
+        {
+          return JSON.parse(this.getDataValue('linksPhoto'));
+        }, 
+        set: function(val) 
+        {
+          return this.setDataValue('linksPhoto', JSON.stringify(val));
+        },
+        allowNull: true
       },
-      allowNull: true
-    },
     timeUTC: 
     {
       type: Sequelize.DATE,
