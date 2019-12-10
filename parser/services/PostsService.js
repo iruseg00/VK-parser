@@ -20,8 +20,8 @@ class PostsService {
           description: body.text ,
           timeUTC: body.timeUTC ,
           site: body.site ,
-          link: body.link ,
           linksPhoto: body.linksPhoto ,
+          link: body.link ,
         }
       });
     }
