@@ -16,7 +16,7 @@ queue.on('error' , function(err , job)
 queue.on('success', function (result, job) 
 {
   i++;
-  logger.info( 'job # ' + i + ' added success  ' + job.toString().replace(/\n/g , ''));
+  logger.info( 'job # ' + i + ' added success  ');
 })
 
 module.exports = queue;

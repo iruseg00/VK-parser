@@ -45,7 +45,7 @@ function EpicGames()
                                 {    
                                     object.linksPhoto.push(String(($('img' , elem).attr('data-image'))));
                                     object.text = ["FREE"];
-
+                                    logger.info('OBJECT EPICGAMES: ' + object);
                                     PostsService.create(object);
                                 }
                             }
