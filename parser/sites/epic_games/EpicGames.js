@@ -14,6 +14,7 @@ function EpicGames()
 {
     try 
     {
+        logger.info('start eg parsing');
         (async () => {
                 const browser = await puppeteer.launch({headless: true});
                 const page = await browser.newPage();
@@ -22,12 +23,14 @@ function EpicGames()
                 await sleep(20000);
                 const html = await page.content();    
                 await browser.close(); 
+                logger.info('browser closed');
                 var $ = cheerio.load(html);
                 $('a').each( (i , elem)=>
                 {
                     var a = String($(elem).attr('aria-label'));
                     if ( a.match(/Free Game Every Week/i) )
                     {
+                        logger.info('Extract a = ' + a);
                         var object = {linksPhoto: []};
                         object.site = "www.epicgames.com";
                         object.type = "Раздача игр";
