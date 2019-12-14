@@ -1,5 +1,7 @@
 FROM node:12.13.1-slim
 
+RUN apt-get install libX11-6
+
 WORKDIR /usr/src/app
 
 COPY ./package*.json ./
