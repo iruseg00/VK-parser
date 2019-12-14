@@ -17,8 +17,8 @@ function EpicGames()
         logger.info('start eg parsing');
         (async () => {
             try 
-            {
-                const browser = await puppeteer.launch({ executablePath: 'google-chrome-unstable' });
+            {//{ executablePath: 'google-chrome-unstable' }
+                const browser = await puppeteer.launch();
                 const page = await browser.newPage();
                 await page.goto(link);
                 await page.waitForSelector("div.Discover-section_c504570a");
