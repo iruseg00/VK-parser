@@ -29,7 +29,6 @@ function GetLinks()
     } 
     catch (error) 
     {
-        console.log(error);
         logger.error('error in Cybersport.js , error: ' + error);
     }
 }
