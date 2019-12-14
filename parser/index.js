@@ -1,4 +1,5 @@
 require("dotenv").config();
+const EpicGames = require('./sites/epic_games/EpicGames');
 const Cybersport = require('./sites/cybersport/Cybersport');
 const logger = require('./logs/log');
 const Sequelize = require('./db/config/connect');
@@ -6,7 +7,7 @@ const Posts = require('./db/models/Posts');
 
 var timer = 
 {
-  "development" : 40000 ,
+  "development" : 20000 ,
   "production"  : 900000
 };
 
@@ -29,7 +30,8 @@ try
 
   setInterval(()=>
   {
-      Cybersport();
+    Cybersport();
+    EpicGames();
   }, time);
 } 
 catch (error) 
