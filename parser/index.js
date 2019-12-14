@@ -8,7 +8,7 @@ const Posts = require('./db/models/Posts');
 var timer = 
 {
   "development" : 20000 ,
-  "production"  : 90000
+  "production"  : 900000
 };
 
 try 
