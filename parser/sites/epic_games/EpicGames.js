@@ -16,6 +16,8 @@ function EpicGames()
     {
         logger.info('start eg parsing');
         (async () => {
+            try 
+            {
                 const browser = await puppeteer.launch({headless: true});
                 const page = await browser.newPage();
                 await page.goto(link);
@@ -55,7 +57,12 @@ function EpicGames()
                         }
                         delete object;
                     }
-                });    
+                }); 
+            }
+            catch(error)
+            {
+                logger.error('error in EpicGames.js -> browser , error: ' + error);
+            }       
           })();
     } 
     catch (error) 
