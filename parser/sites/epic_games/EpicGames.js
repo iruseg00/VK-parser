@@ -18,7 +18,7 @@ function EpicGames()
         (async () => {
             try 
             {
-                const browser = await puppeteer.launch({args: ['--no-sandbox']});
+                const browser = await puppeteer.launch();
                 const page = await browser.newPage();
                 await page.goto(link);
                 await page.waitForSelector("div.Discover-section_c504570a");
