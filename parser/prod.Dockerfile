@@ -11,7 +11,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-
+USER pptruser
 
 RUN npm install     \
     && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
@@ -21,7 +21,7 @@ RUN npm install     \
 
 COPY . .
 
-USER pptruser
+
 
 EXPOSE 6000
 
