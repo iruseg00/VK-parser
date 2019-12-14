@@ -22,7 +22,7 @@ services:
   parser:
     build:
       context: ./parser
-      dockerfile: prod.Dockerfile
+      dockerfile: prod.Dockerfile  
     restart: always
     volumes:
       - /home/parser_log:/usr/src/app/logs/output_log

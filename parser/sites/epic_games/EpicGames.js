@@ -18,7 +18,9 @@ function EpicGames()
         (async () => {
             try 
             {//{ executablePath: 'google-chrome-unstable' }
-                const browser = await puppeteer.launch();
+                const browser = await puppeteer.launch({
+                    args: ['--disable-dev-shm-usage' , '--no-sandbox']
+                  });
                 const page = await browser.newPage();
                 await page.goto(link);
                 await page.waitForSelector("div.Discover-section_c504570a");
