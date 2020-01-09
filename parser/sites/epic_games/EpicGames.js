@@ -1,7 +1,7 @@
 const logger = require('../../logs/log');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer'); 
-const PostsService = require('../../services/PostsService');
+const DistributionsService = require('../../services/DistributionsService');
 
 const link = 'https://www.epicgames.com/store/';
 
@@ -15,7 +15,7 @@ function EpicGames()
     (async () => {
         try 
         {
-            const browser = await puppeteer.launch({
+            const browser = await puppeteer.launch({headless:true ,
                 args: ['--disable-dev-shm-usage' , '--no-sandbox']
               });
             const page = await browser.newPage();
@@ -28,14 +28,16 @@ function EpicGames()
             $('a').each( (i , elem)=>
             {
                 var a = String($(elem).attr('aria-label'));
-                if ( a.match(/Free Game Every Week/i) )
+                if ( a.match(/Free Games/i) || a.match(/Free Game Every Week/i))
                 {
-                    var object = {linksPhoto: []};
+                    var object = {linksPhoto: [], timeUTC: []};
                     object.site = "www.epicgames.com";
-                    object.type = "Раздача игр";
-                    object.topic = a.substring(29 , a.indexOf(',' , 30 ));
+                    object.topic = $('div > div > span' , elem).eq(1).text();
                     object.link = ("https://www.epicgames.com" + $(elem).attr('href'));
-                    object.timeUTC = ($('span > span > time' , elem).attr('datetime'));
+                    $('span > span > time' , elem).each((index , value) =>
+                    {
+                        object.timeUTC.push( $(value).attr('datetime') );
+                    });
                     var DIV_Card_content = String($( 'div' , elem).attr('class'));
                     if(DIV_Card_content.match(/Card-content_/i))
                     {
@@ -46,8 +48,8 @@ function EpicGames()
                             if(DIV_Card_image.match(/Card-image_/i))
                             {    
                                 object.linksPhoto.push(String(($('img' , elem).attr('data-image'))));
-                                object.text = ["FREE"];
-                                PostsService.create(object);
+                                
+                                DistributionsService.create(object);
                             }
                         }
                     }
