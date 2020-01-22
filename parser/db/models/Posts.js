@@ -23,14 +23,6 @@ var Posts = sequelize.define(
     description: 
     {
       type: Sequelize.TEXT,
-      get: function() 
-      {
-        return JSON.parse(this.getDataValue('description'));
-      }, 
-      set: function(val) 
-      {
-        return this.setDataValue('description', JSON.stringify(val));
-      },
       allowNull: false
     },
     linksPhoto: 

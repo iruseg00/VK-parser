@@ -8,7 +8,6 @@ const link = 'https://www.cybersport.ru';
 
 function GetLinks()
 {
-    var array = [];
     try 
     {
         rp.get(link)
@@ -18,7 +17,6 @@ function GetLinks()
                     $("article.tape-cards > div > div > div > a.responsive-object").each( (i , elem)=>
                     {
                         let a =  link + ($(elem)).attr("href");
-                        array.push(a);
                         queue.push(cb =>
                         {
                             extract(a);
