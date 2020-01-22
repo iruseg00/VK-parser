@@ -31,7 +31,7 @@ try
 
   setInterval(()=>
   {
-    // Cybersport();
+    Cybersport();
     EpicGames();
     Playground();
   }, time);
