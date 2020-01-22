@@ -40,7 +40,7 @@ function extract(link)
     }
     catch (error) 
     {
-        logger.error('error in extract.js , error: ' + error);
+        logger.error('error in cybersport/extract.js , error: ' + error);
     }
 };
 
