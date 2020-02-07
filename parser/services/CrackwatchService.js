@@ -50,13 +50,11 @@ class CrackwatchService
 
   GetStatus(link)
   {
-    TrackingCrackwatch.findOne({
+    return TrackingCrackwatch.findOne({
       where:{
         link
       }
-    }).then(res=> {
-      return res.dataValues.status;
-    });
+    }).dataValues.status;
   }
 
   AddTracking(link)
