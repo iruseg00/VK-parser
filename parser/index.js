@@ -2,20 +2,20 @@ require("dotenv").config();
 const EpicGames = require('./sites/epic_games/EpicGames');
 const Cybersport = require('./sites/cybersport/Cybersport');
 const Playground = require('./sites/playground/Playground');
+const Crackwatch = require('./sites/crackwatch/Crackwatch');
 const logger = require('./logs/log');
 const Sequelize = require('./db/config/connect');
-const Posts = require('./db/models/Posts');
+const app = require('./app');
 
 var timer = 
 {
-  "development" : 30000 ,
+  "development" : 10000 ,
   "production"  : 900000
 };
 
 try 
 {
   var env = process.env.NODE_ENV || "development";
-  var time = timer[env];
 
   Sequelize
     .authenticate()
@@ -27,14 +27,14 @@ try
     {
       logger.error("Unable to connect to the database: " + error);
     });
-
-
+    
   setInterval(()=>
   {
+    Crackwatch();
     Cybersport();
     EpicGames();
     Playground();
-  }, time);
+  }, timer[env]);
 } 
 catch (error) 
 {

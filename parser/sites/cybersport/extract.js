@@ -52,6 +52,7 @@ function extract(link)
                 });  
                 
                 PostsService.create(object);
+                delete object;
             });
     }
     catch (error) 
