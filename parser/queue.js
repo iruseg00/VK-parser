@@ -9,8 +9,8 @@ var i = 0;
 
 queue.on('error' , function(err , job)
 {
-    i++;
-    logger.warn('error of job # ' + i + ', error: ' + err );
+  i++;
+  logger.warn('error of job # ' + i + ', error: ' + err );
 })
 
 queue.on('success', function (result, job) 
