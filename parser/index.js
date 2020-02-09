@@ -3,10 +3,8 @@ const EpicGames = require('./sites/epic_games/EpicGames');
 const Cybersport = require('./sites/cybersport/Cybersport');
 const Playground = require('./sites/playground/Playground');
 const Crackwatch = require('./sites/crackwatch/Crackwatch');
-const CrackwatchService = require('./services/CrackwatchService');
 const logger = require('./logs/log');
 const Sequelize = require('./db/config/connect');
-const Posts = require('./db/models/Posts');
 const app = require('./app');
 
 var timer = 
@@ -18,7 +16,6 @@ var timer =
 try 
 {
   var env = process.env.NODE_ENV || "development";
-  var time = timer[env];
 
   Sequelize
     .authenticate()
@@ -30,20 +27,14 @@ try
     {
       logger.error("Unable to connect to the database: " + error);
     });
-
-  // CrackwatchService.AddTracking('https://crackwatch.com/game/red-dead-redemption-2');
-  // CrackwatchService.AddTracking('https://crackwatch.com/game/dragon-ball-z-kakarot');
-  // CrackwatchService.AddTracking('https://crackwatch.com/game/zombie-army-4-dead-war');
-  // CrackwatchService.AddTracking('https://crackwatch.com/game/doom-eternal');
-  CrackwatchService.GetStatus('https://crackwatch.com/game/doom-eternal').then(res=>console.log(res));
-  // CrackwatchService.AddTracking('https://crackwatch.com/game/resident-evil-3-remake');
-  setTimeout(()=>
+    
+  setInterval(()=>
   {
-    //Crackwatch();
-    // Cybersport();
-    // EpicGames();
-    // Playground();
-  }, time);
+    Crackwatch();
+    Cybersport();
+    EpicGames();
+    Playground();
+  }, timer[env]);
 } 
 catch (error) 
 {

@@ -54,7 +54,7 @@ class CrackwatchService
       where:{
         link
       }
-    }).dataValues.status;
+    });
   }
 
   AddTracking(link)

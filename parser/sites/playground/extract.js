@@ -13,7 +13,7 @@ function extract(link)
         var object = 
         {
             site: "playground.ru" ,
-            link ,
+            link: link.replace('#commentsList' , '') ,
             linksPhoto: [] ,
         };
         rp.get(link)
@@ -39,6 +39,7 @@ function extract(link)
                 });
                 
                 PostsService.create(object);
+                delete object;
             });
     }
     catch (error) 
