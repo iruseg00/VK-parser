@@ -6,10 +6,11 @@ const Crackwatch = require('./sites/crackwatch/Crackwatch');
 const logger = require('./logs/log');
 const Sequelize = require('./db/config/connect');
 const app = require('./app');
+const Service = require('./services/PlaygroundService');
 
 var timer = 
 {
-  "development" : 10000 ,
+  "development" : 20000 ,
   "production"  : 900000
 };
 
@@ -27,12 +28,12 @@ try
     {
       logger.error("Unable to connect to the database: " + error);
     });
-    
-  setInterval(()=>
+
+  setTimeout(()=>
   {
-    Crackwatch();
-    Cybersport();
-    EpicGames();
+    //Crackwatch();
+   // Cybersport();
+    //EpicGames();
     Playground();
   }, timer[env]);
 } 
