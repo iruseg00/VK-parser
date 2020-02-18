@@ -1,13 +1,7 @@
 const Distributions = require("../db/models/Distributions");
 
 class DistributionsService 
-{
-  
-  getAll() 
-  {
-    return Distributions.findAll({});
-  }
-    
+{   
   create(body) 
   {
     return Distributions.findOrCreate({
