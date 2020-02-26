@@ -31,9 +31,9 @@ try
 
   setTimeout(()=>
   {
-    //Crackwatch();
-   // Cybersport();
-    //EpicGames();
+    Crackwatch();
+    Cybersport();
+    EpicGames();
     Playground();
   }, timer[env]);
 } 
