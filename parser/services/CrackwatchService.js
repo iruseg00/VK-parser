@@ -4,6 +4,10 @@ const Op = Sequelize.Op;
 
 class CrackwatchService
 {
+  getAll() 
+  {
+    return TrackingCrackwatch.findAll({});
+  }
 
   GetAllUncrackedAndUnreleased()
   {

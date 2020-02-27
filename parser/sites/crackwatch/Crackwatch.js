@@ -1,4 +1,4 @@
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const extract = require('./extract');
 const CrackwatchService = require('../../services/CrackwatchService');
 
@@ -16,6 +16,13 @@ function Crackwatch()
     catch (error) 
     {
         logger.error('error in Crackwatch.js , error: ' + error);
+    }
+    finally
+    {
+        memory.info(`index.js \n` + 
+        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 }
 

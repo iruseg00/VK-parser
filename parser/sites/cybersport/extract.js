@@ -1,9 +1,8 @@
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const rp = require('request-promise');
 const Entities = require('html-entities').XmlEntities;
 const cheerio = require('cheerio');
 const PostsService = require('../../services/PostsService');
-const moment = require('moment');
 
 const entities = new Entities();
 
@@ -11,16 +10,14 @@ function extract(link)
 {
     try
     {
-        var object = 
-        {
-            site : "cybersport.ru",
-            link ,
-            linksPhoto : [],
-            text : []
-        };
+        var object = {};
         rp.get(link)
             .then((result) => 
             {
+                object.site = "cybersport.ru";
+                object.link = link;
+                object.linksPhoto = [];
+                object.text = [];
                 var $ = cheerio.load(result);
                 object.type = $("header.article__header > div.article__meta > a.tag").text() 
                 || $("section > header.article__header > div.article__meta > div > a.tag").text();
@@ -28,7 +25,6 @@ function extract(link)
                 ||  $("header.article__header > h1").text();
                 object.timeUTC = $("section > header.article__header > div.article__info > div.article__author > time").attr("datetime") 
                 || $("header.article__header > div.article__info > div.article__author > a > div.author__title > time").attr("datetime");
-                object.timeUTC = moment(object.timeUTC).utc().format(); 
                 object.text = $("section.article__inner > div.typography").html();
                 object.text = entities.decode(object.text);
                 object.text = object.text.replace(/<script(.+?)([\s\S]*?)<\/script>/gm , '')
@@ -62,6 +58,13 @@ function extract(link)
     catch (error) 
     {
         logger.error('error in cybersport/extract.js , error: ' + error);
+    }
+    finally
+    {
+        memory.info(`cybersport/extract.js \n` + 
+        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 };
 

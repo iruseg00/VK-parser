@@ -1,4 +1,4 @@
-const logger = require('../logs/log');
+const {logger} = require('../logs/log');
 const express = require("express");
 const router = express.Router();
 const CrackwatchService = require('../services/CrackwatchService');

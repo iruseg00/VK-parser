@@ -1,8 +1,7 @@
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer'); 
 const DistributionsService = require('../../services/DistributionsService');
-const moment = require('moment');
 
 const link = 'https://www.epicgames.com/store/';
 
@@ -37,7 +36,7 @@ function EpicGames()
                     object.link = ("https://www.epicgames.com" + $(elem).attr('href'));
                     $('span > span > time' , elem).each((index , value) =>
                     {
-                        object.timeUTC.push( moment( $(value).attr('datetime') ).utc().format() );
+                        object.timeUTC.push( $(value).attr('datetime') );
                     });
                     var DIV_Card_content = String($( 'div' , elem).attr('class'));
                     if(DIV_Card_content.match(/Card-content_/i))
@@ -61,7 +60,14 @@ function EpicGames()
         catch(error)
         {
             logger.error('error in EpicGames.js -> browser , error: ' + error);
-        }       
+        }   
+        finally
+        {
+            memory.info(`Epicgames.js \n` + 
+            `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+            `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+            `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
+        }    
     })();
 }
 
