@@ -1,4 +1,4 @@
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const rp = require('request-promise');
 const Entities = require('html-entities').XmlEntities;
 const cheerio = require('cheerio');
@@ -11,16 +11,14 @@ function extract(link)
 {
     try
     {
-        var object = 
-        {
-            site : "cybersport.ru",
-            link ,
-            linksPhoto : [],
-            text : []
-        };
+        var object = {};
         rp.get(link)
             .then((result) => 
             {
+                object.site = "cybersport.ru";
+                object.link = link;
+                object.linksPhoto = [];
+                object.text = [];
                 var $ = cheerio.load(result);
                 object.type = $("header.article__header > div.article__meta > a.tag").text() 
                 || $("section > header.article__header > div.article__meta > div > a.tag").text();
@@ -62,6 +60,13 @@ function extract(link)
     catch (error) 
     {
         logger.error('error in cybersport/extract.js , error: ' + error);
+    }
+    finally
+    {
+        memory.info(`cybersport/extract.js \n` + 
+        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 };
 

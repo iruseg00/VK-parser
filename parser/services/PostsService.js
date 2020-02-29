@@ -2,6 +2,7 @@ const Posts = require("../db/models/Posts");
 
 class PostsService 
 {
+    
   create(body) {
     return Posts.findOrCreate({
       where: {

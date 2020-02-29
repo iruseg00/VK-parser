@@ -1,4 +1,4 @@
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const rp = require('request-promise');
 const Entities = require('html-entities').XmlEntities;
 const cheerio = require('cheerio');
@@ -14,7 +14,7 @@ function extract(link)
         var object = 
         {
             site: "playground.ru" ,
-            link ,
+            link: link.replace('#commentsList' , '') ,
             linksPhoto: [] ,
         };
         rp.get(link)
@@ -23,7 +23,7 @@ function extract(link)
                 var $ = cheerio.load(result);
                 object.type = $('span[itemprop="itemListElement"] > a > span[itemprop="name"]').text();
                 object.topic = $('div.post-heading > h1[itemprop="headline"]').text();
-                object.timeUTC = $('time[itemprop="datePublished"]').attr("datetime")
+                object.timeUTC = $('time[itemprop="datePublished"]').attr("datetime");
                 object.timeUTC = moment(object.timeUTC).utc().format();
                 object.text = $('div.article-content').html();           
                 object.text = entities.decode(object.text);
@@ -47,6 +47,13 @@ function extract(link)
     catch (error) 
     {
         logger.error('error in playground/extract.js , error: ' + error);
+    }
+    finally
+    {
+        memory.info(`playground/extract.js \n` + 
+        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 };
 

@@ -11,8 +11,19 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.File({ filename: 'logs/output_log/parser.log', level: 'info' }),
-    // new winston.transports.File({ filename: 'logs/combined.log' })
   ]
 });
 
-module.exports = logger;
+const memory = winston.createLogger({
+  level: 'info',
+  format: format.combine(
+    timestamp(),
+    format.splat(),
+    format.simple()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'logs/output_log/memory.log', level: 'info' }),
+  ]
+});
+
+module.exports = { logger , memory };

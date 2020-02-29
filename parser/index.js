@@ -3,14 +3,13 @@ const EpicGames = require('./sites/epic_games/EpicGames');
 const Cybersport = require('./sites/cybersport/Cybersport');
 const Playground = require('./sites/playground/Playground');
 const Crackwatch = require('./sites/crackwatch/Crackwatch');
-const logger = require('./logs/log');
+const {logger , memory} = require('./logs/log');
 const Sequelize = require('./db/config/connect');
 const app = require('./app');
-const Service = require('./services/PlaygroundService');
 
 var timer = 
 {
-  "development" : 20000 ,
+  "development" : 1000 ,
   "production"  : 900000
 };
 
@@ -28,8 +27,8 @@ try
     {
       logger.error("Unable to connect to the database: " + error);
     });
-
-  setTimeout(()=>
+    
+  setInterval(()=>
   {
     Crackwatch();
     Cybersport();
@@ -40,4 +39,13 @@ try
 catch (error) 
 {
   logger.error('error in index.js or inside , error: ' + error);
+}
+finally
+{
+  memory.info(`index.js \n` + 
+              `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+              `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+              `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n` + 
+              `PPID      : ${process.ppid}\n` + 
+              `PID       : ${process.pid}\n`);
 }

@@ -1,5 +1,5 @@
 const queue = require('../../queue');
-const logger = require('../../logs/log');
+const {logger , memory} = require('../../logs/log');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 const extract = require('./extract');
@@ -30,10 +30,17 @@ function GetLinks()
                         } 
                     });
                 });
-    } 
+    }  
     catch (error) 
     {
         logger.error('error in Cybersport.js , error: ' + error);
+    }
+    finally
+    {
+        memory.info(`Cybersport.js \n` + 
+        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
+        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
+        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 }
 

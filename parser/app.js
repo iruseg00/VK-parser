@@ -1,6 +1,6 @@
 const express = require("express");
 const CrackwatchController = require('./controllers/CrackwatchController');
-const logger = require('./logs/log');
+const {logger} = require('./logs/log');
 
 const app = express();
 const PORT = 33133;
