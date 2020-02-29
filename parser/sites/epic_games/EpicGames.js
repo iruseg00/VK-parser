@@ -2,6 +2,7 @@ const {logger , memory} = require('../../logs/log');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer'); 
 const DistributionsService = require('../../services/DistributionsService');
+const moment = require('moment');
 
 const link = 'https://www.epicgames.com/store/';
 
@@ -20,7 +21,6 @@ function EpicGames()
               });
             const page = await browser.newPage();
             await page.goto(link);
-            await page.waitForSelector("div.Discover-section_c504570a");
             await sleep(20000);
             const html = await page.content();    
             await browser.close(); 
@@ -36,8 +36,7 @@ function EpicGames()
                     object.link = ("https://www.epicgames.com" + $(elem).attr('href'));
                     $('span > span > time' , elem).each((index , value) =>
                     {
-                        object.timeUTC.push( $(value).attr('datetime') );
-                    });
+                        object.timeUTC.push( moment( $(value).attr('datetime') ).utc().format() );                    });
                     var DIV_Card_content = String($( 'div' , elem).attr('class'));
                     if(DIV_Card_content.match(/Card-content_/i))
                     {
