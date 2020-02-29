@@ -34,7 +34,7 @@ const PID = winston.createLogger({
     format.simple()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/output_log/memory.log', level: 'info' }),
+    new winston.transports.File({ filename: 'logs/output_log/PID.log', level: 'info' }),
   ]
 });
 
