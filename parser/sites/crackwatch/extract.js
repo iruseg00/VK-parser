@@ -1,4 +1,4 @@
-const {logger , memory} = require('../../logs/log');
+const {logger} = require('../../logs/log');
 const puppeteer = require('puppeteer'); 
 const cheerio = require('cheerio');
 const CrackwatchService = require('../../services/CrackwatchService')
@@ -22,13 +22,6 @@ async function GetInfo(link)
     catch (error) 
     {
         logger.error('error in crackwatch/extract.js , error: ' + error);
-    }
-    finally
-    {
-        memory.info(`crackwatch/extract.js \n` + 
-        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
-        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
-        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 }
 

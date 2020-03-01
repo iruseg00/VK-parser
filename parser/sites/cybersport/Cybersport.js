@@ -29,7 +29,7 @@ function GetLinks()
                             });   
                         } 
                     });
-                });
+                });       
     }  
     catch (error) 
     {

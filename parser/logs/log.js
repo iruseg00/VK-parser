@@ -26,4 +26,4 @@ const memory = winston.createLogger({
   ]
 });
 
-module.exports = { logger , memory , PID};
+module.exports = { logger , memory };
