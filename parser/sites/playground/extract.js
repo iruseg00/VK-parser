@@ -1,4 +1,4 @@
-const {logger , memory} = require('../../logs/log');
+const {logger} = require('../../logs/log');
 const rp = require('request-promise');
 const Entities = require('html-entities').XmlEntities;
 const cheerio = require('cheerio');
@@ -47,13 +47,6 @@ function extract(link)
     catch (error) 
     {
         logger.error('error in playground/extract.js , error: ' + error);
-    }
-    finally
-    {
-        memory.info(`playground/extract.js \n` + 
-        `rss       : ${process.memoryUsage().rss / 1048576}  MB\n` + 
-        `Total Heap: ${process.memoryUsage().heapTotal / 1048576}  MB\n` + 
-        `Used Heap : ${process.memoryUsage().heapUsed / 1048576} MB\n`);
     }
 };
 
