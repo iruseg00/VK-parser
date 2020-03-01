@@ -26,16 +26,4 @@ const memory = winston.createLogger({
   ]
 });
 
-const PID = winston.createLogger({
-  level: 'info',
-  format: format.combine(
-    timestamp(),
-    format.splat(),
-    format.simple()
-  ),
-  transports: [
-    new winston.transports.File({ filename: 'logs/output_log/PID.log', level: 'info' }),
-  ]
-});
-
 module.exports = { logger , memory , PID};

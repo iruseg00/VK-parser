@@ -1,4 +1,4 @@
-const {logger , memory , PID} = require('../../logs/log');
+const {logger , memory } = require('../../logs/log');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer'); 
 const DistributionsService = require('../../services/DistributionsService');
@@ -23,7 +23,6 @@ function EpicGames()
             await page.goto(link);
             await sleep(20000);
             const html = await page.content();    
-            PID.info(`browser pid : ${browser.process().pid}`);
             await browser.close(); 
             var $ = cheerio.load(html);
             $('a').each( (i , elem)=>
