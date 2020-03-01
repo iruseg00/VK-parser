@@ -1,9 +1,9 @@
-var Queue = require("queue");
+const Queue = require("queue");
 var queue = Queue();
-const {logger} = require('./logs/log');
+const {logger , workTime } = require('./logs/log');
 
 queue.concurrency = 1;
-queue.autostart = false;
+queue.autostart = true;
 queue.timeout = 10000;
 var i = 0;
 
@@ -18,5 +18,10 @@ queue.on('success', function (result, job)
   i++;
   logger.info( 'job # ' + i + ' added success  ');
 })
+
+queue.on('end' , (err) =>
+{
+  workTime.info('---end---');
+});
 
 module.exports = queue;
