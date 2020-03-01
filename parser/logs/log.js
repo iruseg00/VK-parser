@@ -26,4 +26,16 @@ const memory = winston.createLogger({
   ]
 });
 
-module.exports = { logger , memory };
+const workTime = winston.createLogger({
+  level: 'info',
+  format: format.combine(
+    timestamp(),
+    format.splat(),
+    format.simple()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'logs/output_log/workTime.log', level: 'info' }),
+  ]
+});
+
+module.exports = { logger , memory , workTime };

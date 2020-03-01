@@ -3,7 +3,7 @@ const EpicGames = require('./sites/epic_games/EpicGames');
 const Cybersport = require('./sites/cybersport/Cybersport');
 const Playground = require('./sites/playground/Playground');
 const Crackwatch = require('./sites/crackwatch/Crackwatch');
-const { logger , memory } = require('./logs/log');
+const { logger , memory , workTime } = require('./logs/log');
 const Sequelize = require('./db/config/connect');
 const app = require('./app');
 
@@ -28,8 +28,9 @@ try
       logger.error("Unable to connect to the database: " + error);
     });
     
-  setTimeout(()=>
+  setInterval(()=>
   {
+    workTime.info('---start---');
     Crackwatch();
     Cybersport();
     EpicGames();
