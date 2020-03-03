@@ -33,7 +33,7 @@ class CrackwatchService
       where: {
         status: "CRACKED"
       }
-    });;
+    });
   }
 
   GetAllUnreleased()
@@ -76,7 +76,7 @@ class CrackwatchService
       {
         link
       }
-    })
+    });
   }
 
   Update(status , link)
@@ -86,7 +86,7 @@ class CrackwatchService
       {
         link
       }
-    })
+    });
   }
 }
   
