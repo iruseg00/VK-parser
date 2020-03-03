@@ -5,12 +5,16 @@ const { combine, timestamp, label, prettyPrint } = format;
 const logger = winston.createLogger({
   level: 'debug',
   format: format.combine(
-    timestamp(),
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     format.splat(),
     format.simple()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/output_log/parser.log', level: 'info' }),
+    new winston.transports.File(
+      { 
+        filename: 'logs/output_log/parser.log', 
+        format: format.combine(format.json())
+      }),
   ]
 });
 
