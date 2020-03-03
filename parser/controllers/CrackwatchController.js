@@ -6,7 +6,7 @@ const CrackwatchService = require('../services/CrackwatchService');
 router.post("/add", (req, res) =>     
 {
   logger.info('POST request success');
-  logger.debug(`Register ${JSON.stringify(req.body)}`);
+  logger.info(`Register ${JSON.stringify(req.body)}`);
   CrackwatchService.AddTracking(req.body.link)
     .then(data => 
     {
