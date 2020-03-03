@@ -24,6 +24,8 @@ services:
       context: ./parser
       dockerfile: prod.Dockerfile  
     restart: always
+    ports:
+      - 33133:33133
     volumes:
       - /home/parser_log:/usr/src/app/logs/output_log
     depends_on:
