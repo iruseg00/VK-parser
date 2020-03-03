@@ -1,6 +1,7 @@
 const TrackingCrackwatch = require("../db/models/TrackingCrackwatch");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const { logger } = require('../logs/log');
 
 class CrackwatchService
 {
@@ -55,6 +56,7 @@ class CrackwatchService
 
   AddTracking(link)
   {
+    logger.info('AddTracking service, link : ' + link);
     return TrackingCrackwatch.findOrCreate({
       where: 
       {
