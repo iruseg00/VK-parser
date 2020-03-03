@@ -1,6 +1,7 @@
 const express = require("express");
 const CrackwatchController = require('./controllers/CrackwatchController');
 const {logger} = require('./logs/log');
+const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 33133;
@@ -11,8 +12,9 @@ try
     {
         if (err) console.error(err);
     });
-        
-    app.use("/api/crackwatch", CrackwatchController);
+
+    app.use(bodyParser.json({ limit: "10mb", extended: true }));    
+    app.use("/api/crackwatch", CrackwatchController);   
         
     server.setTimeout(3000000); 
     
