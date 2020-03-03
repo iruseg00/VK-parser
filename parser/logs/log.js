@@ -6,7 +6,6 @@ const logger = winston.createLogger({
   level: 'info',
   format: format.combine(
     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    format.metadata({ fillExcept: ['level' , 'label' ,'message', 'timestamp'] }),
     format.splat(),
     format.simple()
   ),
