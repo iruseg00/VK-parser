@@ -2,6 +2,8 @@ const winston = require('winston');
 const { format } = require('winston');
 const { combine, timestamp, label, prettyPrint } = format;
 
+const logFormat = format.printf(info => `${info.timestamp} ${info.level} [${info.label}]: ${info.message}`)
+
 const logger = winston.createLogger({
   level: 'info',
   format: format.combine(
