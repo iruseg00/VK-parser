@@ -5,6 +5,7 @@ const { combine, timestamp, label, prettyPrint } = format;
 const logger = winston.createLogger({
   level: 'info',
   format: format.combine(
+    format.label({label: path.basename(process.mainModule.filename)}),
     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     format.splat(),
     format.simple()
