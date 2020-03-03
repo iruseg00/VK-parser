@@ -3,7 +3,7 @@ const { format } = require('winston');
 const { combine, timestamp, label, prettyPrint } = format;
 
 const logger = winston.createLogger({
-  level: 'info',
+  level: 'debug',
   format: format.combine(
     timestamp(),
     format.splat(),
