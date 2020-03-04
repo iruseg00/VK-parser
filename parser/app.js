@@ -13,7 +13,7 @@ try
         if (err) console.error(err);
     });
 
-    app.use(bodyParser.json({ limit: "10mb", extended: true }));    
+    app.use(bodyParser.json({ limit: "10mb", extended: false }));    
     app.use("/api/crackwatch", CrackwatchController);   
         
     server.setTimeout(3000000); 
