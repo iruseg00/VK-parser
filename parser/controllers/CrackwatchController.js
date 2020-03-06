@@ -13,16 +13,16 @@ router.post("/add", (req, res) =>
     body += data;
     logger.info('req on data: ' + data);           
   });
-  // req.on('end', function() 
-  // {
-  //   try {
-  //     var POST = qs.parse(body);        
-  //   logger.info('req on end POST: ' + POST); 
-  //   } catch (error) {
-  //     logger.error(error); 
-  //   }
+  req.on('end', function() 
+  {
+    try {
+      var POST = qs.parse(body);        
+    logger.info('req on end POST: ' + POST); 
+    } catch (error) {
+      logger.error(error); 
+    }
   
-  // });
+  });
 
   logger.info(req.body);
   CrackwatchService.AddTracking(req.body.link)
