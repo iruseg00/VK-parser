@@ -9,7 +9,7 @@ const app = require('./app');
 
 var timer = 
 {
-  "development" : 3000 ,
+  "development" : 10000 ,
   "production"  : 900000
 };
 

@@ -10,10 +10,10 @@ try
 {
     var server = app.listen(PORT, err => 
     {
-        if (err) console.error(err);
+        if (err) logger.error(err);
     });
 
-    app.use(bodyParser.json({ limit: "10mb", extended: false }));    
+    app.use(bodyParser.json({ limit: "10mb" }));    
     app.use("/api/crackwatch", CrackwatchController);   
         
     server.setTimeout(3000000); 
