@@ -16,7 +16,7 @@ router.post("/add", (req, res) =>
   req.on('end', function() 
   {
     try {
-      var POST = qs.parse(body);        
+      var POST = JSON.parse(body);        
     logger.info('req on end POST: ' + POST); 
     } catch (error) {
       logger.error(error); 
