@@ -2,34 +2,21 @@ const {logger} = require('../logs/log');
 const express = require("express");
 const router = express.Router();
 const CrackwatchService = require('../services/CrackwatchService');
-const qs = require('querystring');
 
 router.post("/add", (req, res) =>     
 {
   logger.info('post log');
-  var body = '';
   req.on('data', function(data) 
   {
-    body += data;
     logger.info('req on data: ' + data);           
   });
-  req.on('end', function() 
-  {
-    try {
-      var POST = JSON.parse(body);        
-    logger.info('req on end POST: ' + POST); 
-    } catch (error) {
-      logger.error(error); 
-    }
-  
-  });
-
   logger.info(req.body);
+
   CrackwatchService.AddTracking(req.body.link)
     .then(data => 
     {
       if (!data) throw new Error("Error in CrackwatchController.js , can not get data by method CrackwatchService.AddTracking()");
-      res.status(200);
+      res.status(201);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -58,7 +45,7 @@ router.post("/update", (req, res) =>
     .then(data => 
     {
       if (data[0] != 1) throw new Error("Error by method CrackwatchService.Update(). Update did not happen.");
-      res.status(200);
+      res.status(201);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -72,7 +59,7 @@ router.post("/get_status", (req, res) =>
     .then(data => 
     {
       if (data === null) throw new Error("Error , method CrackwatchService.GetStatus() return 'null'.");
-      res.status(200).json(data.dataValues.status);
+      res.status(201).json(data.dataValues.status);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -89,7 +76,7 @@ router.post("/get_unreleased", (req, res) =>
       var links = [];
       for(let i = 0; i < data.length ; i++)
         links.push(data[i].dataValues.link);
-      res.status(200).json(links);
+      res.status(201).json(links);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -106,7 +93,7 @@ router.post("/get_uncracked", (req, res) =>
       var links = [];
       for(let i = 0; i < data.length ; i++)
         links.push(data[i].dataValues.link);
-      res.status(200).json(links);
+      res.status(201).json(links);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -123,7 +110,7 @@ router.post("/get_cracked", (req, res) =>
       var links = [];
       for(let i = 0; i < data.length ; i++)
         links.push(data[i].dataValues.link);
-      res.status(200).json(links);
+      res.status(201).json(links);
     })
     .catch(err => {
       res.status(400).json(err.message);
@@ -140,7 +127,7 @@ router.post("/get_un_ed", (req, res) =>
       var values = [];
       for(let i = 0; i < data.length ; i++)
         values.push( { link : data[i].dataValues.link , status : data[i].dataValues.status } );
-      res.status(200).json(values);
+      res.status(201).json(values);
     })
     .catch(err => {
       res.status(400).json(err.message);
