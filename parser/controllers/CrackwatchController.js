@@ -6,9 +6,15 @@ const CrackwatchService = require('../services/CrackwatchService');
 router.post("/add", (req, res) =>     
 {
   logger.info('post log');
+  var body = '';
   req.on('data', function(data) 
   {
-    logger.info(data);           
+    body += data;
+    logger.info('req on data: ' + data);           
+  });
+  req.on('end', function() 
+  {
+    logger.info('req on end: ' + body);           
   });
 
   logger.info(req.body);
