@@ -16,7 +16,9 @@ router.post("/add", (req, res) =>
   req.on('end', function() 
   {
     logger.info('req on end: ' + body); 
-    var POST = qs.parse(body);          
+    var POST = qs.parse(body);        
+    logger.info('req on end POST: ' + POST); 
+  
   });
 
   logger.info(req.body);
