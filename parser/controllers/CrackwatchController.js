@@ -2,6 +2,7 @@ const {logger} = require('../logs/log');
 const express = require("express");
 const router = express.Router();
 const CrackwatchService = require('../services/CrackwatchService');
+const qs = require('querystring');
 
 router.post("/add", (req, res) =>     
 {
@@ -14,7 +15,8 @@ router.post("/add", (req, res) =>
   });
   req.on('end', function() 
   {
-    logger.info('req on end: ' + body);           
+    logger.info('req on end: ' + body); 
+    var POST = qs.parse(body);          
   });
 
   logger.info(req.body);
